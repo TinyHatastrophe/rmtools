@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="streams">
+      <UniqueIdentifier>{d33b343f-9630-4ec1-87a0-854910f7bf99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="core">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="array">
+      <UniqueIdentifier>{c2648a80-b37a-41df-ad79-5ac5656d4535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="string">
+      <UniqueIdentifier>{eb738d51-7fd0-4d61-bc8c-1eba54b769ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="include">
+      <UniqueIdentifier>{16ca9071-3f32-4752-a81a-0e33157faa79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="map">
+      <UniqueIdentifier>{9da6d721-a9f6-42c8-9ee4-77634e384359}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="variant">
+      <UniqueIdentifier>{17b82ae5-2304-4229-a142-f61543abeff6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3d">
+      <UniqueIdentifier>{5b31db30-f569-4bce-ba5b-b9b612f6992e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="scene">
+      <UniqueIdentifier>{79898035-8ecf-44fa-9bd8-f30dae0ff83b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="converters">
+      <UniqueIdentifier>{f55819a7-0ecb-4514-9a6f-26d827cce54c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="buffer">
+      <UniqueIdentifier>{a62545de-fe38-4977-946a-e4a2a31dd985}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="risen">
+      <UniqueIdentifier>{c3dc7cd8-040d-484b-9e7c-cdd3fbbe90d7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Mimicry\mi_doc.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_docparser.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_filestream.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_maxfilestream.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_memorystream.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_memorystreambase.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_refstream.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_stringstream.cpp">
+      <Filter>streams</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_error.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_global.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_unique.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_string.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_stringallocator.cpp">
+      <Filter>string</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_map.cpp">
+      <Filter>map</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_name.cpp">
+      <Filter>map</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_variant.cpp">
+      <Filter>variant</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_box.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_color.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_face.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_matrix4.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_maxface.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_quaternion.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_vec3.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_vertexmatcher.cpp">
+      <Filter>3d</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_material.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_materialbase.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_mesh.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_multimaterial.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_node.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_scene.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_skin.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_texmap.cpp">
+      <Filter>scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_3dbreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_3dbwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_3dsreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_3dswriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_asereader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_asewriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_converters.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_cooking.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_coordshifter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_genomefile.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_genomematerial.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_genomevolume.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_maxreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_objreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_objwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_r3mshreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xactreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xactwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xcmshreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xcmshwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xcomreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xcomwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xlmshreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xlmshwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xmacreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xmacwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xmshreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xmshwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xnvmshreader.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_xnvmshwriter.cpp">
+      <Filter>converters</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_buffer.cpp">
+      <Filter>buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_risendoc.cpp">
+      <Filter>risen</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_risendocparser.cpp">
+      <Filter>risen</Filter>
+    </ClCompile>
+    <ClCompile Include="Mimicry\mi_risenname.cpp">
+      <Filter>risen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mimicry\mi_doc.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_docparser.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_filestream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_iostream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_istream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_maxfilestream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_memorystream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_memorystreambase.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_ostream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_refstream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_stream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_stringstream.h">
+      <Filter>streams</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_error.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_errormacros.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_global.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_macros.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_types.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_unique.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_array.h">
+      <Filter>array</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_tag.h">
+      <Filter>array</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_string.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_stringallocator.h">
+      <Filter>string</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_3d.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_array.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_buffer.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_converters.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_core.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_map.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_risen.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_scene.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_standard.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_standard_base.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_streams.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_string.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_include_variant.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_map.h">
+      <Filter>map</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_name.h">
+      <Filter>map</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_variant.h">
+      <Filter>variant</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_box.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_color.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_face.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_matrix4.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_maxface.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_quaternion.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_vec3.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_vertexmatcher.h">
+      <Filter>3d</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_material.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_materialbase.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_mesh.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_multimaterial.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_node.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_scene.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_skin.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_texmap.h">
+      <Filter>scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_3dbreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_3dbwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_3dsreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_3dswriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_asereader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_asewriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_converters.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_cooking.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_coordshifter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_genomefile.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_genomematerial.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_genomevolume.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_maxreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_objreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_objwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_r3mshreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xactreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xactwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xcmshreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xcmshwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xcomreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xcomwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xlmshreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xlmshwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xmacreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xmacwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xmshreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xmshwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xnvmshreader.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_xnvmshwriter.h">
+      <Filter>converters</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_buffer.h">
+      <Filter>buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_risendoc.h">
+      <Filter>risen</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_risendocparser.h">
+      <Filter>risen</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry\mi_risenname.h">
+      <Filter>risen</Filter>
+    </ClInclude>
+    <ClInclude Include="Mimicry.h">
+      <Filter>core</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mimicry\mi_iostream.inl">
+      <Filter>streams</Filter>
+    </None>
+    <None Include="Mimicry\mi_istream.inl">
+      <Filter>streams</Filter>
+    </None>
+    <None Include="Mimicry\mi_ostream.inl">
+      <Filter>streams</Filter>
+    </None>
+    <None Include="Mimicry\mi_stream.inl">
+      <Filter>streams</Filter>
+    </None>
+    <None Include="Mimicry\mi_error.inl">
+      <Filter>core</Filter>
+    </None>
+    <None Include="Mimicry\mi_global.inl">
+      <Filter>core</Filter>
+    </None>
+    <None Include="Mimicry\mi_array.inl">
+      <Filter>array</Filter>
+    </None>
+    <None Include="Mimicry\mi_string.inl">
+      <Filter>string</Filter>
+    </None>
+    <None Include="Mimicry\mi_map.inl">
+      <Filter>map</Filter>
+    </None>
+    <None Include="Mimicry\mi_variant.inl">
+      <Filter>variant</Filter>
+    </None>
+  </ItemGroup>
+</Project>

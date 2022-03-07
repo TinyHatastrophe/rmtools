@@ -2,7 +2,7 @@
 #include "..\Mimicry.h"
 #include "..\Mimicry\mi_include_risen.h"
 #include "Windows.h"
-#include "..\..\..\zlib\zlib.h"
+#include "zlib.h"
 
 namespace
 {

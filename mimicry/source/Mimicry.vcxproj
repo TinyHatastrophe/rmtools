@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{39AE260D-5EC7-4A61-95EF-F938DDBABF3E}</ProjectGuid>
+    <RootNamespace>Mimicry</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <UseOfAtl>false</UseOfAtl>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>16.0.31201.295</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\lib\</OutDir>
+    <IntDir>$(SolutionDir)..\build\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <ProgramDataBaseFileName>$(IntDir)mi_vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4505;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Command />
+    </PreBuildEvent>
+    <ClCompile>
+      <StringPooling>true</StringPooling>
+      <ExceptionHandling />
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions2</EnableEnhancedInstructionSet>
+      <ProgramDataBaseFileName>$(IntDir)mi_vc80.pdb</ProgramDataBaseFileName>
+      <WarningLevel>Level4</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4505;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Mimicry\mi_3dbreader.cpp" />
+    <ClCompile Include="Mimicry\mi_3dbwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_3dsreader.cpp" />
+    <ClCompile Include="Mimicry\mi_3dswriter.cpp" />
+    <ClCompile Include="Mimicry\mi_asereader.cpp" />
+    <ClCompile Include="Mimicry\mi_asewriter.cpp" />
+    <ClCompile Include="Mimicry\mi_box.cpp" />
+    <ClCompile Include="Mimicry\mi_buffer.cpp" />
+    <ClCompile Include="Mimicry\mi_color.cpp" />
+    <ClCompile Include="Mimicry\mi_converters.cpp" />
+    <ClCompile Include="Mimicry\mi_cooking.cpp" />
+    <ClCompile Include="Mimicry\mi_coordshifter.cpp" />
+    <ClCompile Include="Mimicry\mi_doc.cpp" />
+    <ClCompile Include="Mimicry\mi_docparser.cpp" />
+    <ClCompile Include="Mimicry\mi_error.cpp" />
+    <ClCompile Include="Mimicry\mi_face.cpp" />
+    <ClCompile Include="Mimicry\mi_filestream.cpp" />
+    <ClCompile Include="Mimicry\mi_genomefile.cpp" />
+    <ClCompile Include="Mimicry\mi_genomematerial.cpp" />
+    <ClCompile Include="Mimicry\mi_genomevolume.cpp" />
+    <ClCompile Include="Mimicry\mi_global.cpp" />
+    <ClCompile Include="Mimicry\mi_map.cpp" />
+    <ClCompile Include="Mimicry\mi_material.cpp" />
+    <ClCompile Include="Mimicry\mi_materialbase.cpp" />
+    <ClCompile Include="Mimicry\mi_matrix4.cpp" />
+    <ClCompile Include="Mimicry\mi_maxface.cpp" />
+    <ClCompile Include="Mimicry\mi_maxfilestream.cpp" />
+    <ClCompile Include="Mimicry\mi_maxreader.cpp" />
+    <ClCompile Include="Mimicry\mi_memorystream.cpp" />
+    <ClCompile Include="Mimicry\mi_memorystreambase.cpp" />
+    <ClCompile Include="Mimicry\mi_mesh.cpp" />
+    <ClCompile Include="Mimicry\mi_multimaterial.cpp" />
+    <ClCompile Include="Mimicry\mi_name.cpp" />
+    <ClCompile Include="Mimicry\mi_node.cpp" />
+    <ClCompile Include="Mimicry\mi_objreader.cpp" />
+    <ClCompile Include="Mimicry\mi_objwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_quaternion.cpp" />
+    <ClCompile Include="Mimicry\mi_r3mshreader.cpp" />
+    <ClCompile Include="Mimicry\mi_refstream.cpp" />
+    <ClCompile Include="Mimicry\mi_risendoc.cpp" />
+    <ClCompile Include="Mimicry\mi_risendocparser.cpp" />
+    <ClCompile Include="Mimicry\mi_risenname.cpp" />
+    <ClCompile Include="Mimicry\mi_scene.cpp" />
+    <ClCompile Include="Mimicry\mi_skin.cpp" />
+    <ClCompile Include="Mimicry\mi_string.cpp" />
+    <ClCompile Include="Mimicry\mi_stringallocator.cpp" />
+    <ClCompile Include="Mimicry\mi_stringstream.cpp" />
+    <ClCompile Include="Mimicry\mi_texmap.cpp" />
+    <ClCompile Include="Mimicry\mi_unique.cpp" />
+    <ClCompile Include="Mimicry\mi_variant.cpp" />
+    <ClCompile Include="Mimicry\mi_vec3.cpp" />
+    <ClCompile Include="Mimicry\mi_vertexmatcher.cpp" />
+    <ClCompile Include="Mimicry\mi_xactreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xactwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xcmshreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xcmshwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xcomreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xcomwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xlmshreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xlmshwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xmacreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xmacwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xmshreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xmshwriter.cpp" />
+    <ClCompile Include="Mimicry\mi_xnvmshreader.cpp" />
+    <ClCompile Include="Mimicry\mi_xnvmshwriter.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mimicry.h" />
+    <ClInclude Include="Mimicry\mi_3dbreader.h" />
+    <ClInclude Include="Mimicry\mi_3dbwriter.h" />
+    <ClInclude Include="Mimicry\mi_3dsreader.h" />
+    <ClInclude Include="Mimicry\mi_3dswriter.h" />
+    <ClInclude Include="Mimicry\mi_array.h" />
+    <ClInclude Include="Mimicry\mi_asereader.h" />
+    <ClInclude Include="Mimicry\mi_asewriter.h" />
+    <ClInclude Include="Mimicry\mi_box.h" />
+    <ClInclude Include="Mimicry\mi_buffer.h" />
+    <ClInclude Include="Mimicry\mi_color.h" />
+    <ClInclude Include="Mimicry\mi_converters.h" />
+    <ClInclude Include="Mimicry\mi_cooking.h" />
+    <ClInclude Include="Mimicry\mi_coordshifter.h" />
+    <ClInclude Include="Mimicry\mi_doc.h" />
+    <ClInclude Include="Mimicry\mi_docparser.h" />
+    <ClInclude Include="Mimicry\mi_error.h" />
+    <ClInclude Include="Mimicry\mi_errormacros.h" />
+    <ClInclude Include="Mimicry\mi_face.h" />
+    <ClInclude Include="Mimicry\mi_filestream.h" />
+    <ClInclude Include="Mimicry\mi_genomefile.h" />
+    <ClInclude Include="Mimicry\mi_genomematerial.h" />
+    <ClInclude Include="Mimicry\mi_genomevolume.h" />
+    <ClInclude Include="Mimicry\mi_global.h" />
+    <ClInclude Include="Mimicry\mi_include_3d.h" />
+    <ClInclude Include="Mimicry\mi_include_array.h" />
+    <ClInclude Include="Mimicry\mi_include_buffer.h" />
+    <ClInclude Include="Mimicry\mi_include_converters.h" />
+    <ClInclude Include="Mimicry\mi_include_core.h" />
+    <ClInclude Include="Mimicry\mi_include_map.h" />
+    <ClInclude Include="Mimicry\mi_include_risen.h" />
+    <ClInclude Include="Mimicry\mi_include_scene.h" />
+    <ClInclude Include="Mimicry\mi_include_standard.h" />
+    <ClInclude Include="Mimicry\mi_include_standard_base.h" />
+    <ClInclude Include="Mimicry\mi_include_streams.h" />
+    <ClInclude Include="Mimicry\mi_include_string.h" />
+    <ClInclude Include="Mimicry\mi_include_variant.h" />
+    <ClInclude Include="Mimicry\mi_iostream.h" />
+    <ClInclude Include="Mimicry\mi_istream.h" />
+    <ClInclude Include="Mimicry\mi_macros.h" />
+    <ClInclude Include="Mimicry\mi_map.h" />
+    <ClInclude Include="Mimicry\mi_material.h" />
+    <ClInclude Include="Mimicry\mi_materialbase.h" />
+    <ClInclude Include="Mimicry\mi_matrix4.h" />
+    <ClInclude Include="Mimicry\mi_maxface.h" />
+    <ClInclude Include="Mimicry\mi_maxfilestream.h" />
+    <ClInclude Include="Mimicry\mi_maxreader.h" />
+    <ClInclude Include="Mimicry\mi_memorystream.h" />
+    <ClInclude Include="Mimicry\mi_memorystreambase.h" />
+    <ClInclude Include="Mimicry\mi_mesh.h" />
+    <ClInclude Include="Mimicry\mi_multimaterial.h" />
+    <ClInclude Include="Mimicry\mi_name.h" />
+    <ClInclude Include="Mimicry\mi_node.h" />
+    <ClInclude Include="Mimicry\mi_objreader.h" />
+    <ClInclude Include="Mimicry\mi_objwriter.h" />
+    <ClInclude Include="Mimicry\mi_ostream.h" />
+    <ClInclude Include="Mimicry\mi_quaternion.h" />
+    <ClInclude Include="Mimicry\mi_r3mshreader.h" />
+    <ClInclude Include="Mimicry\mi_refstream.h" />
+    <ClInclude Include="Mimicry\mi_risendoc.h" />
+    <ClInclude Include="Mimicry\mi_risendocparser.h" />
+    <ClInclude Include="Mimicry\mi_risenname.h" />
+    <ClInclude Include="Mimicry\mi_scene.h" />
+    <ClInclude Include="Mimicry\mi_skin.h" />
+    <ClInclude Include="Mimicry\mi_stream.h" />
+    <ClInclude Include="Mimicry\mi_string.h" />
+    <ClInclude Include="Mimicry\mi_stringallocator.h" />
+    <ClInclude Include="Mimicry\mi_stringstream.h" />
+    <ClInclude Include="Mimicry\mi_tag.h" />
+    <ClInclude Include="Mimicry\mi_texmap.h" />
+    <ClInclude Include="Mimicry\mi_types.h" />
+    <ClInclude Include="Mimicry\mi_unique.h" />
+    <ClInclude Include="Mimicry\mi_variant.h" />
+    <ClInclude Include="Mimicry\mi_vec3.h" />
+    <ClInclude Include="Mimicry\mi_vertexmatcher.h" />
+    <ClInclude Include="Mimicry\mi_xactreader.h" />
+    <ClInclude Include="Mimicry\mi_xactwriter.h" />
+    <ClInclude Include="Mimicry\mi_xcmshreader.h" />
+    <ClInclude Include="Mimicry\mi_xcmshwriter.h" />
+    <ClInclude Include="Mimicry\mi_xcomreader.h" />
+    <ClInclude Include="Mimicry\mi_xcomwriter.h" />
+    <ClInclude Include="Mimicry\mi_xlmshreader.h" />
+    <ClInclude Include="Mimicry\mi_xlmshwriter.h" />
+    <ClInclude Include="Mimicry\mi_xmacreader.h" />
+    <ClInclude Include="Mimicry\mi_xmacwriter.h" />
+    <ClInclude Include="Mimicry\mi_xmshreader.h" />
+    <ClInclude Include="Mimicry\mi_xmshwriter.h" />
+    <ClInclude Include="Mimicry\mi_xnvmshreader.h" />
+    <ClInclude Include="Mimicry\mi_xnvmshwriter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Mimicry\mi_array.inl" />
+    <None Include="Mimicry\mi_error.inl" />
+    <None Include="Mimicry\mi_global.inl" />
+    <None Include="Mimicry\mi_iostream.inl" />
+    <None Include="Mimicry\mi_istream.inl" />
+    <None Include="Mimicry\mi_map.inl" />
+    <None Include="Mimicry\mi_ostream.inl" />
+    <None Include="Mimicry\mi_stream.inl" />
+    <None Include="Mimicry\mi_string.inl" />
+    <None Include="Mimicry\mi_variant.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
