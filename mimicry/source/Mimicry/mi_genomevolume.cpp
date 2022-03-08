@@ -581,19 +581,35 @@ mEResult mCGenomeVolume::Open( mCString const & a_strFilePath, MIBool a_bResolve
     if ( !m_streamArchive.IsOpen() || m_streamArchive.GetSize() < 48 )
         return Close(), mEResult_False;
     MIUInt const uVersion = m_streamArchive.ReadU32();
-    mCString const strId = m_streamArchive.ReadString( 4 );
-    m_streamArchive.Skip( 4 );
-    MIUInt const uEncryption = m_streamArchive.ReadU32();
-    MIUInt const uCompression = m_streamArchive.ReadU32();
-    if ( uVersion > 1 || strId != "G3V0" || uEncryption || uCompression > 2 )
-        return Close(), mEResult_False;
-    m_streamArchive.Skip( 12 );
-    MIU64 const u64RootOffset = m_streamArchive.ReadU64();
-    m_streamArchive.Seek( u64RootOffset );
-    if ( uVersion == 0 )
-        ReadOldVersionedEntry( m_streamArchive, m_arrFiles, "" );
+    // Elex 2 PAK
+    if (uVersion == ' KAP')
+    {
+        if (m_streamArchive.ReadU32() != '100V')
+            return Close(), mEResult_False;
+
+        m_streamArchive.Skip( 8 );
+        MIU64 const OffsetToVolume = m_streamArchive.ReadU64();
+        MIU64 const VolumeSize = m_streamArchive.ReadU64();
+        m_streamArchive.Seek(OffsetToVolume);
+        ReadElex2Volume(m_streamArchive);
+    }
     else
-        ReadNewVersionedDirectory( m_streamArchive, m_arrFiles, "" );
+    {
+        mCString const strId = m_streamArchive.ReadString( 4 );
+        m_streamArchive.Skip( 4 );
+        MIUInt const uEncryption = m_streamArchive.ReadU32();
+        MIUInt const uCompression = m_streamArchive.ReadU32();
+        if ( uVersion > 1 || strId != "G3V0" || uEncryption || uCompression > 2 )
+            return Close(), mEResult_False;
+        m_streamArchive.Skip( 12 );
+        MIU64 const u64RootOffset = m_streamArchive.ReadU64();
+        m_streamArchive.Seek( u64RootOffset );
+        if ( uVersion == 0 )
+            ReadOldVersionedEntry( m_streamArchive, m_arrFiles, "" );
+        else
+            ReadNewVersionedDirectory( m_streamArchive, m_arrFiles, "" );
+    }
+
     m_bResolveRisen3Entries = a_bResolveRisen3Entries;
     GetRoot();
     m_mapFileIndices.Reserve( m_arrFiles.GetCount() );
@@ -755,6 +771,100 @@ namespace
         a_streamSource.Skip( 1 );
         return strResult;
     }
+
+    mCString ReadElex2StringOffset( mCIOStreamBinary & a_streamSource, MIU64 BasePos )
+    {
+        MIUInt Offset = a_streamSource.ReadU32();
+        MIU64 CurPos = a_streamSource.Tell64();
+        a_streamSource.Seek(BasePos + Offset);
+        mCString strResult;
+        while (MIChar c = a_streamSource.ReadChar())
+            strResult += c;
+        a_streamSource.Seek(CurPos);
+        return strResult;
+    }
+}
+
+mEResult mCGenomeVolume::ReadElex2Volume( mCIOStreamBinary & a_streamSource )
+{
+    if (a_streamSource.ReadU32() != ' LOV')
+        return mEResult_False;
+
+    a_streamSource.Skip(4);
+    MIU32 OffsetToStringtable = a_streamSource.ReadU32();
+    MIU32 StringtableSize = a_streamSource.ReadU32();
+    MIU32 NumStringtableEntries = a_streamSource.ReadU32();
+    MIU32 NumberOfFiles = a_streamSource.ReadU32();
+    MIU32 Flags = a_streamSource.ReadU32();
+    MIU32 NumberOfJournals = a_streamSource.ReadU32();
+    // Read journals...
+    for (MIU32 i = 0; i < NumberOfJournals; i++)
+        if (!ReadElex2Journal(a_streamSource))
+            return mEResult_False;
+    // Read files...
+    for (MIU32 i = 0; i < NumberOfFiles; i++)
+        if (!ReadElex2File(a_streamSource))
+            return mEResult_False;
+    return mEResult_Ok;
+}
+
+mEResult mCGenomeVolume::ReadElex2Journal( mCIOStreamBinary & a_streamSource )
+{
+    if (a_streamSource.ReadU32() != 'RUOJ')
+        return mEResult_False;
+
+    MIU32 JournalType = a_streamSource.ReadU32();
+    if (JournalType == 0)
+    {
+        a_streamSource.Skip(8);
+        // MIU32 NumberOfFiles;
+        // MIU32 Flags;
+        return mEResult_Ok;
+    }
+    else if (JournalType == 1)
+    {
+        a_streamSource.Skip(4);
+        MIU32 FileOrderListEndOffset = a_streamSource.ReadU32();
+        a_streamSource.Skip(FileOrderListEndOffset - 0x10);
+        // MIU32 Data[(FileOrderListEnd - 0x10) / 4];
+        return mEResult_Ok;
+    }
+    return mEResult_False;
+}
+
+mEResult mCGenomeVolume::ReadElex2File( mCIOStreamBinary & a_streamSource )
+{
+    MIU64 BasePos = a_streamSource.Tell64();
+
+    if (a_streamSource.ReadU32() != 'ELIF')
+        return mEResult_False;
+
+    a_streamSource.Skip(4);
+    mCString FileName = ReadElex2StringOffset(a_streamSource, BasePos);
+    mCString FilePath = ReadElex2StringOffset(a_streamSource, BasePos);
+    MIU64 DataOffset = a_streamSource.ReadU64();
+    MIU64 Flags = a_streamSource.ReadU64();
+    MIU64 TimeCreated = a_streamSource.ReadU64();
+    MIU64 TimeModified = a_streamSource.ReadU64();
+    MIU32 FileSizeUncompressed = a_streamSource.ReadU32();
+    MIU32 FileSizeCompressed = a_streamSource.ReadU32();
+    MIU32 Compression = a_streamSource.ReadU32();
+    MIU32 Unk1 = a_streamSource.ReadU32();
+    MIU64 Unk2 = a_streamSource.ReadU64();
+
+    if (Compression != 0 && Compression != 'BILZ')
+        return mEResult_False;
+
+    SFile & File = m_arrFiles.AddNew();
+    File.m_strFilePath = FilePath;
+    File.m_u64DataOffset = DataOffset;
+    File.m_u64Created = TimeCreated;
+    File.m_u64Accessed = 0;
+    File.m_u64Modified = TimeModified;
+    File.m_bCompressed = Compression == 'BILZ';
+    File.m_uDataSize = FileSizeCompressed;
+    File.m_uFileSize = FileSizeUncompressed;
+    return mEResult_Ok;
 }
 
 void mCGenomeVolume::ReadNewVersionedDirectory( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath )

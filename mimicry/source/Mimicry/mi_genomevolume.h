@@ -111,6 +111,9 @@ private:
     static MIBool WritePakDir( mCGenomeVolume::CDir const & a_Dir, mTArray< mCString > const & a_arrFilePaths, mTArray< mCGenomeVolume::SFileTime > const & a_arrFileTimes );
     static MIBool WritePakFile( mCString const & a_strFilePath, mCGenomeVolume::SFileTime const & a_Time );
 private:
+    mEResult ReadElex2Volume( mCIOStreamBinary & a_streamSource );
+    mEResult ReadElex2Journal( mCIOStreamBinary & a_streamSource );
+    mEResult ReadElex2File( mCIOStreamBinary & a_streamSource );
     void ReadNewVersionedDirectory( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
     void ReadNewVersionedFile( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
     void ReadOldVersionedEntry( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
