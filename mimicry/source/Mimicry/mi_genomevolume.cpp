@@ -772,21 +772,17 @@ namespace
         return strResult;
     }
 
-    mCString ReadElex2StringOffset( mCIOStreamBinary & a_streamSource, MIU64 BasePos )
+    mCString ReadElex2StringOffset( mCIOStreamBinary & a_streamSource, MIU64 a_BasePos, MIU64 a_StringtablePos, mCCharArray const & a_Stringtable )
     {
-        MIUInt Offset = a_streamSource.ReadU32();
-        MIU64 CurPos = a_streamSource.Tell64();
-        a_streamSource.Seek(BasePos + Offset);
-        mCString strResult;
-        while (MIChar c = a_streamSource.ReadChar())
-            strResult += c;
-        a_streamSource.Seek(CurPos);
-        return strResult;
+        MIU32 RelativeOffset = a_streamSource.ReadU32();
+        MIU64 Offset = a_BasePos + RelativeOffset - a_StringtablePos;
+        return mCString(a_Stringtable.GetBuffer() + Offset);
     }
 }
 
 mEResult mCGenomeVolume::ReadElex2Volume( mCIOStreamBinary & a_streamSource )
 {
+    MIU64 BasePos = a_streamSource.Tell64();
     if (a_streamSource.ReadU32() != ' LOV')
         return mEResult_False;
 
@@ -797,13 +793,24 @@ mEResult mCGenomeVolume::ReadElex2Volume( mCIOStreamBinary & a_streamSource )
     MIU32 NumberOfFiles = a_streamSource.ReadU32();
     MIU32 Flags = a_streamSource.ReadU32();
     MIU32 NumberOfJournals = a_streamSource.ReadU32();
+
+    MIU64 CurPos = a_streamSource.Tell64();
+    MIU64 StringtablePos = BasePos + OffsetToStringtable;
+    mCCharArray Stringtable;
+    Stringtable.Resize(StringtableSize);
+    a_streamSource.Seek(StringtablePos);
+    if (!a_streamSource.Read(Stringtable.AccessBuffer(), StringtableSize))
+        return mEResult_False;
+    a_streamSource.Seek(CurPos);
+
     // Read journals...
     for (MIU32 i = 0; i < NumberOfJournals; i++)
         if (!ReadElex2Journal(a_streamSource))
             return mEResult_False;
+
     // Read files...
     for (MIU32 i = 0; i < NumberOfFiles; i++)
-        if (!ReadElex2File(a_streamSource))
+        if (!ReadElex2File(a_streamSource, StringtablePos, Stringtable))
             return mEResult_False;
     return mEResult_Ok;
 }
@@ -832,7 +839,7 @@ mEResult mCGenomeVolume::ReadElex2Journal( mCIOStreamBinary & a_streamSource )
     return mEResult_False;
 }
 
-mEResult mCGenomeVolume::ReadElex2File( mCIOStreamBinary & a_streamSource )
+mEResult mCGenomeVolume::ReadElex2File( mCIOStreamBinary & a_streamSource, MIU64 a_StringtablePos, mCCharArray const & a_Stringtable )
 {
     MIU64 BasePos = a_streamSource.Tell64();
 
@@ -840,8 +847,9 @@ mEResult mCGenomeVolume::ReadElex2File( mCIOStreamBinary & a_streamSource )
         return mEResult_False;
 
     a_streamSource.Skip(4);
-    mCString FileName = ReadElex2StringOffset(a_streamSource, BasePos);
-    mCString FilePath = ReadElex2StringOffset(a_streamSource, BasePos);
+    a_streamSource.Skip(4);
+    // mCString FileName = ReadElex2StringOffset(a_streamSource, BasePos);
+    mCString FilePath = ReadElex2StringOffset(a_streamSource, BasePos, a_StringtablePos, a_Stringtable);
     MIU64 DataOffset = a_streamSource.ReadU64();
     MIU64 Flags = a_streamSource.ReadU64();
     MIU64 TimeCreated = a_streamSource.ReadU64();

@@ -113,7 +113,7 @@ private:
 private:
     mEResult ReadElex2Volume( mCIOStreamBinary & a_streamSource );
     mEResult ReadElex2Journal( mCIOStreamBinary & a_streamSource );
-    mEResult ReadElex2File( mCIOStreamBinary & a_streamSource );
+    mEResult ReadElex2File( mCIOStreamBinary & a_streamSource, MIU64 a_StringtablePos, mCCharArray const & a_Stringtable );
     void ReadNewVersionedDirectory( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
     void ReadNewVersionedFile( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
     void ReadOldVersionedEntry( mCIOStreamBinary & a_streamSource, mTArray< SFile > & a_arrFilesDest, mCString a_strPath );
