@@ -441,7 +441,7 @@ MIBool mCRisenDoc::DocumentRisen3Template( MIBool a_bElex )
 MIBool mCRisenDoc::DocumentRisen3Hdr( void )
 {
     MIUInt const uOffset = m_streamIn.Tell();
-    if ( m_streamIn.ReadString( 4 ) != "DT01" || m_streamIn.ReadU32() != 0 || m_streamIn.ReadU32() != 1 )
+    if ( m_streamIn.ReadString( 4 ) != "DT01" || m_streamIn.ReadU32() != 0 || m_streamIn.ReadU32() != 2 )
         return m_streamIn.Seek( uOffset ), MIFalse;
     MIUInt uSectionCount = m_streamIn.ReadU32();
     MIUInt uOffsetSections = m_streamIn.Tell();
@@ -449,6 +449,7 @@ MIBool mCRisenDoc::DocumentRisen3Hdr( void )
         m_streamIn.Seek( uOffsetSections + s * 4 );
         m_streamIn.Seek( m_streamIn.ReadU32() + 8 );  // displacement of 8 cause GAR5 header takes 8 byte
         StartBlock( ReadHash( "class" ) );
+        WriteLine( "ResourceRevision = " + m_streamIn.ReadString( 4 ) + ";" );
         for ( MIUInt u = m_streamIn.ReadU32(); u--; )
         {
             mCString strName = m_streamIn.ReadString( m_streamIn.ReadU32() );

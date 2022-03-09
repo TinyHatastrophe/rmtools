@@ -343,7 +343,8 @@ MIBool mCRisenDocParser::ParseRisen3Hdr( MIBool a_bSetLastErrorLine, MIBool a_bE
     MIUInt const uOffset = m_streamIn.Tell(), uOffsetOut = m_streamOut.Tell();
     MIU64 u64Time = g_time();
     u64Time = ( u64Time << 32 ) | ( u64Time >> 32 );
-    m_streamOut << "DT01" << ( MIU32 ) 0 << ( MIU32 ) 1 << ( MIU32 ) 0;
+    m_streamOut << "DT01" << ( MIU32 ) 0 << ( MIU32 ) 2 << ( MIU32 ) 0;
+    // TODO: ...
     MIUInt uSectionCount = 0, uOffsetSections = m_streamOut.Tell();
     for ( MIUInt u = 0; u < static_cast< MIUInt >( a_bElex ? 38 : 26 ); u++ )  // pad section offsets
         m_streamOut << ( MIU32 ) 0;
