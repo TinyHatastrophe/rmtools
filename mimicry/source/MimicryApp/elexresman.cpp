@@ -1096,7 +1096,7 @@ MIBool SecDocToSec( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         streamOffsetTable << g_32( uOffset ) << ( MIU32 ) 0 << ( MIU8 ) 0;
     streamDest << streamOffsetTable;
     mCRisenName::InitializeGameStrings();
-    streamDest << mCRisenName( "class gCSectorResource" ) << "SC02";
+    streamDest << mCRisenName( "class gCSectorResource" ) << "SC03";
     uOffset = streamDest.Tell();
     streamDest << ( MIU32 ) 0;
     mCGenomeVolume::SFileTime Time;
@@ -1473,7 +1473,7 @@ MIBool ReadResourceFile( mCIOStreamBinary & streamIn, mCString const & a_strFile
     }
     if ( strResourceRevision == "TP03" || strResourceRevision == "TP04" )
         return TplToTplDoc( streamIn, a_strFilePath );
-    if ( strResourceRevision == "SC02" )
+    if ( strResourceRevision == "SC02" || strResourceRevision == "SC03" )
         return SecToSecDoc( streamIn, a_strFilePath );
     if ( strResourceRevision == "WR02" )
         return WrlToWrlDoc( streamIn, a_strFilePath );

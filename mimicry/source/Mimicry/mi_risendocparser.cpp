@@ -730,7 +730,7 @@ MIBool mCRisenDocParser::ParseVersion( MIU16 & a_u16Version, MIBool a_bSetLastEr
 MIBool mCRisenDocParser::ParseRisen3DynamicEntity( MIBool & a_bZero, MIBool a_bSetLastErrorLine, MILPCVoid a_pParentMat, MIBool a_bElex )
 {
     MIU16 const u16DynEntityVersion = a_bElex ? 9 : 6;
-    MIU16 const u16EntityVersion = a_bElex ? 4 : 3;
+    MIU16 const u16EntityVersion = a_bElex ? 5 : 3;
     MIUInt const uFFSize = a_bElex ? 0 : 1;
     MIUInt const uRangeAndUnknown0Size = a_bElex ? 12 : 0;
     MIUInt const uTimestampSize = a_bElex ? 0 : 8;

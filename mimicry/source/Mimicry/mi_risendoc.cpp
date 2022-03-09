@@ -478,7 +478,7 @@ mCString mCRisenDoc::ReadHash( mCString const & a_strType )
 MIBool mCRisenDoc::DocumentRisen3DynamicEntity( MIBool a_bElex )
 {
     MIU16 const u16DynEntityVersion = a_bElex ? 9 : 6;
-    MIU16 const u16EntityVersion = a_bElex ? 4 : 3;
+    MIU16 const u16EntityVersion = a_bElex ? 5 : 3;
     MIUInt const uFFSize = a_bElex ? 0 : 1;
     MIUInt const uRangeAndUnknown0Size = a_bElex ? 12 : 0;
     MIUInt const uTimestampSize = a_bElex ? 0 : 8;
