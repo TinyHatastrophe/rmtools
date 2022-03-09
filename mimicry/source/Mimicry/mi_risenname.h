@@ -6,7 +6,8 @@ enum mEGame
     mEGame_Unknown,
     mEGame_Risen2,
     mEGame_Risen3,
-    mEGame_Elex
+    mEGame_Elex,
+    mEGame_Elex2
 };
 
 class mCRisenName :
@@ -31,6 +32,7 @@ private:
     static void InitializeRisen2Strings( void );
     static void InitializeRisen3Strings( void );
     static void InitializeElexStrings( void );
+    static void InitializeElex2Strings( void );
     static void RegisterNameStrings( MILPCChar const * a_pStrings, MIUInt a_uCount );
 private:
     static mEGame                 s_enuGame;
@@ -38,6 +40,7 @@ private:
     static mTMap< MIU32, mCName > s_mapRisenNames;
     static mTNameMap< MIInt >     s_mapRisen3EnumValues;
     static mTNameMap< MIInt >     s_mapElexEnumValues;
+    static mTNameMap< MIInt >     s_mapElex2EnumValues;
 };
 
 mCIStreamBinary & operator >> ( mCIStreamBinary & a_streamSource, mCRisenName & a_nameDest );

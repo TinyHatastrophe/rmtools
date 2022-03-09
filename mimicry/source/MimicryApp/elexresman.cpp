@@ -1561,7 +1561,7 @@ MIBool Unpack( mCGenomeVolume & a_Pak, mCString const & a_strPath )
 
 int main( int argc, char* argv[] )
 {
-    mCRisenName::SetGame( mEGame_Elex );
+    mCRisenName::SetGame( mEGame_Elex2 );
     if ( argc < 2 )
     {
         printf( "Elex Resource Manager v1.1 by Baltram\n"
