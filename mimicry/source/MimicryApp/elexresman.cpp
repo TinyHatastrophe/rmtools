@@ -1337,7 +1337,7 @@ MIBool DdsToImg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath, 
         streamOffsetTable << g_32( uOffset ) << ( MIU32 ) 0 << ( MIU8 ) 0;
     streamDest << streamOffsetTable;
     mCRisenName::InitializeGameStrings();
-    streamDest << mCRisenName( "class eCImageResource2" ) << "IM08";
+    streamDest << mCRisenName( "class eCImageResource2" ) << "IM09";
     uOffset = streamDest.Tell();
     streamDest << ( MIU32 ) 0;
     mCGenomeVolume::SFileTime Time;
@@ -1449,7 +1449,7 @@ MIBool ReadResourceFile( mCIOStreamBinary & streamIn, mCString const & a_strFile
         return streamIn.Seek( 0 ), MIFalse;
     streamIn.Seek( streamIn.ReadU32() + 4 );
     mCString const strResourceRevision = streamIn.ReadString( 4 );
-    if ( strResourceRevision == "IM08" )
+    if ( strResourceRevision == "IM08" || strResourceRevision == "IM09" )
         return ImgToDds( streamIn, a_strFilePath );
     if ( strResourceRevision == "SN11" || strResourceRevision == "DI22" )
     {
