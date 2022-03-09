@@ -537,7 +537,7 @@ MIBool mCRisenDoc::DocumentRisen3DynamicEntity( MIBool a_bElex )
 MIBool mCRisenDoc::DocumentRisen3TemplateClass( MIBool a_bMasterEntity, MIBool a_bElex )
 {
     MIU16 const u16TemplateEntityVersion = a_bElex ? 6 : 3;
-    MIU16 const u16EntityVersion = a_bElex ? 4 : 3;
+    MIU16 const u16EntityVersion = a_bElex ? 5 : 3; // This changed to 5 with Elex 2
     MIUInt const uFiletimeSize = a_bElex ? 0 : 8;
     MIUInt const uUnknown1Size = a_bElex ? 4 : 2;
     MIUInt const uOffset = m_streamIn.Tell();

@@ -853,7 +853,7 @@ MIBool mCRisenDocParser::ParseRisen3DynamicEntity( MIBool & a_bZero, MIBool a_bS
 MIBool mCRisenDocParser::ParseRisen3TemplateClass( mCString a_strName, MIU64 a_u4TimeSwapped, MIBool a_bSetLastErrorLine, MIBool a_bElex )
 {
     MIU16 const u16TemplateEntityVersion = a_bElex ? 6 : 3;
-    MIU16 const u16EntityVersion = a_bElex ? 4 : 3;
+    MIU16 const u16EntityVersion = a_bElex ? 5 : 3;
     MIUInt const uFiletimeSize = a_bElex ? 0 : 8;
     MIUInt const uUnknown1Size = a_bElex ? 4 : 2;
     MIUInt const uOffset = m_streamIn.Tell(), uOffsetOut = m_streamOut.Tell();
