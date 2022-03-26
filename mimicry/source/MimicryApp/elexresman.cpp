@@ -293,6 +293,7 @@ MIBool ImgToDds( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath )
 
 MIBool SndDlgToFsb( mCIOStreamBinary & a_streamIn, mCIOStreamBinary & a_streamOut )
 {
+    // TODO: Probably this offset is wrong, not the correct data ends up in streamFsb...
     a_streamIn.Skip( -44 );
     MIU32 u32Data1Offset, u32Data1Size;
     a_streamIn >> u32Data1Offset >> u32Data1Size;
@@ -1451,7 +1452,7 @@ MIBool ReadResourceFile( mCIOStreamBinary & streamIn, mCString const & a_strFile
     mCString const strResourceRevision = streamIn.ReadString( 4 );
     if ( strResourceRevision == "IM08" || strResourceRevision == "IM09" )
         return ImgToDds( streamIn, a_strFilePath );
-    if ( strResourceRevision == "SN11" || strResourceRevision == "DI22" )
+    if ( strResourceRevision == "SN11" || strResourceRevision == "DI22" || strResourceRevision == "DI26" )
     {
         mCMemoryStream streamFsb, streamMp3;
         mCString strFilePath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath );
