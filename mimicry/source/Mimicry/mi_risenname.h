@@ -21,6 +21,8 @@ public:
 public:
     static mEGame GetGame( void );
     static void   SetGame( mEGame a_enuGame );
+    static MILPCChar GetGameResourceMagic( void );
+    static MILPCChar GetGamePrefix( void );
     static void   InitializeGameStrings( void );
 public:
     mCIStreamBinary & operator << ( mCIStreamBinary & a_streamSource );

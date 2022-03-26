@@ -172,7 +172,7 @@ MIBool mCGenomeVolume::CFileHandle::GetFileData( mCIOStreamBinary & a_streamFile
         a_streamFileDataDest << m_pDir->m_u32ResourceClassHash << m_pDir->m_u32ResourceClassRevision << ( MIU32 )( File.m_uDatabaseEntrySize );
         a_streamFileDataDest.Write( arrFileData.GetBuffer(), arrFileData.GetCount() );
         a_streamFileDataDest.Seek( 0 );
-        a_streamFileDataDest << ( mCRisenName::GetGame() == mEGame_Elex ? "E1RF" : "R3RF" ) << u32Offset;
+        a_streamFileDataDest << ( mCRisenName::GetGameResourceMagic() ) << u32Offset;
     }
     a_streamFileDataDest.Seek( 0 );
     return MITrue;
@@ -188,7 +188,7 @@ mCString mCGenomeVolume::CFileHandle::GetFilePath( void ) const
     if ( m_bResolveRisen3Entries && m_pDir )
     {
         mCString strDirPath = m_pDir->GetName() == "" ? "\\" : "\\" + m_pDir->GetName() + "\\";
-        return strDirPath + m_pVolume->m_arrFiles[ m_uFileIndex ].m_strResourceName + ( mCRisenName::GetGame() == mEGame_Elex ? ".elex" : ".r3" ) + m_pDir->m_strResourceToken;
+        return strDirPath + m_pVolume->m_arrFiles[ m_uFileIndex ].m_strResourceName + "." + mCRisenName::GetGamePrefix() + m_pDir->m_strResourceToken;
     }
     return m_pVolume->m_arrFiles[ m_uFileIndex ].m_strFilePath;
 }
@@ -454,9 +454,9 @@ mEResult mCGenomeVolume::CreateRisen3Archive( mCString a_strRootPath, mTArray< m
         if ( !s_mapResourceDirs.Contains( strDir ) )
         {
             MIBool bRisen3Resource = MIFalse;
-            if ( strExt.StartsWith( mCRisenName::GetGame() == mEGame_Elex ? "elex" : "r3" ) )
+            if ( strExt.StartsWith( mCRisenName::GetGamePrefix() ) )
                 for ( MIUInt v = sizeof( s_arrResourceTokens ) / sizeof( *s_arrResourceTokens ); v--; )
-                    if ( strExt == mCString( ( mCRisenName::GetGame() == mEGame_Elex ? "elex" : "r3" ) ) + s_arrResourceTokens[ v ] )
+                    if ( strExt == mCString( mCRisenName::GetGamePrefix() ) + s_arrResourceTokens[ v ] )
                         bRisen3Resource = MITrue;
             if ( !bRisen3Resource )
                 continue;
@@ -704,7 +704,7 @@ MIBool mCGenomeVolume::WritePakFile( mCString const & a_strFilePath, mCGenomeVol
         strftime( mCString::AccessStaticBuffer(), 80, "%d.%m.%Y - %H:%M:%S", pTimeInfoCompiled );
         mCString strTimeCompiled( mCString::AccessStaticBuffer() );
         pResourceDir->m_streamCSV << mCString().Format( "%.8x|%s|%s|%s|\r\n", u32Hash, strResourceName.GetText(), strTimeRaw.GetText(), strTimeCompiled.GetText() );
-        if ( streamIn.ReadString( 4 ) != ( mCRisenName::GetGame() == mEGame_Elex ? "E1RF" : "R3RF" ) )
+        if ( streamIn.ReadString( 4 ) != mCRisenName::GetGameResourceMagic() )
             return s_strProblematicFilePath = a_strFilePath, MIFalse;
         MIUInt uRomSize = streamIn.ReadU32();
         streamIn.Seek( uRomSize );

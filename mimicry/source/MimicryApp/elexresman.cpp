@@ -217,7 +217,7 @@ MIBool WrlToWrlDoc( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elexwrldoc";
+    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elex2wrldoc";
     if ( !streamDoc.ToFile( strDocPath ) )
     {
         printf( "Error: Could not create %s\nThe problem might be missing access rights. Try starting the program with admin rights.\n", strDocPath.GetText() );
@@ -230,7 +230,7 @@ MIBool WrlToWrlDoc( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
 MIBool WrlDocToWrl( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath )
 {
     mCString strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strWrlPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elexwrl";
+    mCString const strWrlPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2wrl";
     mCMemoryStream streamWrl;
     mCStringStream streamDoc;
     a_streamIn >> streamDoc;
@@ -249,7 +249,7 @@ MIBool WrlDocToWrl( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    streamDest << "E1RF" << ( MIU32 )( streamWrl.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( streamWrl.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << streamWrl;
     mCMemoryStream streamOffsetTable;
     MIUInt uOffset = streamDest.Tell();
@@ -318,7 +318,7 @@ MIBool TplToTplDoc( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elextpldoc";
+    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elex2tpldoc";
     if ( !streamDoc.ToFile( strDocPath ) )
     {
         printf( "Error: Could not create %s\nThe problem might be missing access rights. Try starting the program with admin rights.\n", strDocPath.GetText() );
@@ -348,7 +348,7 @@ MIBool SecToSecDoc( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elexsecdoc";
+    mCString const strDocPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elex2secdoc";
     if ( !streamDoc.ToFile( strDocPath ) )
     {
         printf( "Error: Could not create %s\nThe problem might be missing access rights. Try starting the program with admin rights.\n", strDocPath.GetText() );
@@ -524,7 +524,7 @@ MIBool Mp3ToFsb( mCIOStreamBinary & a_streamIn, mCIOStreamBinary & a_streamOut )
     case 16000:
         uFrequencyId = 4; break;
     }
-    a_streamOut << "FSB5" << ( MIU32 ) 1 << ( MIU32 ) 1 << ( MIU32 ) 36 << ( MIU32 ) 0 << ( MIU32 ) 0 << ( MIU32 ) 11 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0;  // FSB5 header
+    a_streamOut << "FSB5" << ( MIU32 ) 1 << ( MIU32 ) 1 << ( MIU32 ) 36 << ( MIU32 ) 0 << ( MIU32 ) 0 << ( MIU32 ) 16 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0;  // FSB5 header
     a_streamOut << g_32( ( uFrequencyId << 1 ) + ( ( arrFrames.Front().m_bMono ? 0 : 1 ) << 5 ) );
     a_streamOut << g_32( ( 1152 * arrFrames.GetCount() ) << 2 );
     a_streamOut << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
@@ -553,8 +553,8 @@ MIBool FsbToSndDlg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         return MIFalse;
     }
     mCString strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strR3SndPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elexsnd";
-    mCString const strR3DlgPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elexdlg";
+    mCString const strR3SndPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2snd";
+    mCString const strR3DlgPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2dlg";
     mCFileStream streamDlg( strR3DlgPath, mEFileOpenMode_Read );
     if ( streamDlg.IsOpen() )
     {
@@ -610,7 +610,7 @@ MIBool FsbToSndDlg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
     MIUInt uSamplingRate = uFrequencyId > 9 ? 0 : arrSamplingRates[ uFrequencyId ];
     MIU64  u64SampleCount = a_streamIn.ReadU32() >> 2;
     MIUInt uDuration = static_cast< MIUInt >( ( 1000 * u64SampleCount ) / uSamplingRate );
-    streamDest << "E1RF" << ( MIU32 )( a_streamIn.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( a_streamIn.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << a_streamIn;
     mCMemoryStream streamOffsetTable;
     MIUInt uOffset = streamDest.Tell(), uOffset2, uOffset3, uOffset4;
@@ -648,7 +648,7 @@ MIBool FsbToSndDlg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
 MIBool FsbToMp3( mCIOStreamBinary & a_streamIn, mCIOStreamBinary & a_streamOut )
 {
     MIUInt uEndDataOffset = 96;
-    if ( a_streamIn.ReadString( 4 ) != "FSB5" || a_streamIn.ReadU32() != 1 || a_streamIn.ReadU32() != 1 || a_streamIn.ReadU32() != 36 || a_streamIn.ReadU32() != 0 || ( uEndDataOffset += a_streamIn.ReadU32(), a_streamIn.ReadU32() != 11 ) )
+    if ( a_streamIn.ReadString( 4 ) != "FSB5" || a_streamIn.ReadU32() != 1 || a_streamIn.ReadU32() != 1 || a_streamIn.ReadU32() != 36 || a_streamIn.ReadU32() != 0 || ( uEndDataOffset += a_streamIn.ReadU32(), a_streamIn.ReadU32() != 16 ) )
         return MIFalse;  // Not a .fsb file created with elexresman
     a_streamIn.Seek( 96 );
     a_streamIn.SetInvertEndianness( MITrue );
@@ -803,7 +803,7 @@ MIBool FsbToWav( mCMemoryStream & streamFsb, mCString const & a_strFilePath )
 MIBool DlgDocToDlg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath )
 {
     mCString strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strR3DlgPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elexdlg";
+    mCString const strR3DlgPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2dlg";
     mCString const strWavPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".wav";
     mCFileStream streamWav( strWavPath, mEFileOpenMode_Read );
     if ( !streamWav.IsOpen() )
@@ -836,7 +836,7 @@ MIBool DlgDocToDlg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    streamDest << "E1RF" << ( MIU32 )( streamWav.GetSize() + streamDlgData2.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( streamWav.GetSize() + streamDlgData2.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << streamWav;
     streamDest << streamDlgData2;
     mCMemoryStream streamOffsetTable;
@@ -928,9 +928,9 @@ MIBool ProcessSecMod( mCIOStreamBinary & a_streamIn, mCString const & a_strFileP
     for ( MIUInt u = arrFiles.GetCount(); u--; )
     {
         mCString strExt = g_GetFileExt( arrFiles[ u ] ).ToLower();
-        if ( strExt == "elextpldoc" )
+        if ( strExt == "elex2tpldoc" )
             arrTemplateDocs.Add( arrFiles[ u ] );
-        else if ( strExt == "elexsecdoc" )
+        else if ( strExt == "elex2secdoc" )
             arrSectorDocs.Add( arrFiles[ u ] );
     }
     mTArray< mCString > arrPendingTemplateEntities( arrTemplateEntities );
@@ -1060,7 +1060,7 @@ MIBool ProcessSecMod( mCIOStreamBinary & a_streamIn, mCString const & a_strFileP
 MIBool SecDocToSec( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath )
 {
     mCString strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strR3SecPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elexsec";
+    mCString const strR3SecPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2sec";
     mCMemoryStream streamSec;
     mCMemoryStream streamResourceClass;
     mCStringStream streamDoc;
@@ -1087,7 +1087,7 @@ MIBool SecDocToSec( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    streamDest << "E1RF" << ( MIU32 )( streamSec.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( streamSec.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << streamSec;
     mCMemoryStream streamOffsetTable;
     MIUInt uOffset = streamDest.Tell(), uOffset2, uOffset4;
@@ -1118,7 +1118,7 @@ MIBool SecDocToSec( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
 MIBool TplDocToTpl( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath )
 {
     mCString strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strR3TplPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elextpl";
+    mCString const strR3TplPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + strResourceName + ".elex2tpl";
     mCMemoryStream streamTpl;
     mCStringStream streamDoc;
     a_streamIn >> streamDoc;
@@ -1137,7 +1137,7 @@ MIBool TplDocToTpl( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePat
         WaitForEnterKey( MITrue );
         return MIFalse;
     }
-    streamDest << "E1RF" << ( MIU32 )( streamTpl.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( streamTpl.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << streamTpl;
     mCMemoryStream streamOffsetTable;
     MIUInt uOffset = streamDest.Tell(), uOffset2, uOffset3, uOffset4;
@@ -1176,7 +1176,7 @@ MIBool DdsToImg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath, 
         return a_streamIn.Seek( 0 ), a_bIsDds = MIFalse;
     a_bIsDds = MITrue;
     mCString const strResourceName = g_GetFileNameNoExt( a_strFilePath );
-    mCString const strR3IMGPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".eleximg";
+    mCString const strR3IMGPath = g_GetDirectoryPath( a_strFilePath ) + "\\" + g_GetFileNameNoExt( a_strFilePath ) + ".elex2img";
     mCFileStream streamDest( strR3IMGPath, mEFileOpenMode_Write );
     if ( !streamDest.IsOpen() )
     {
@@ -1328,7 +1328,7 @@ MIBool DdsToImg( mCIOStreamBinary & a_streamIn, mCString const & a_strFilePath, 
     if ( uMipMapCount )
         a_streamIn >> g_32( uMipMapCount );
     MIU32 u32SkipMips = ( uMipMapCount && uWidth >= 128 ) ? ( uWidth == 128 ? 257 : 258 ) : 0;
-    streamDest << "E1RF" << ( MIU32 )( a_streamIn.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
+    streamDest << "E2RF" << ( MIU32 )( a_streamIn.GetSize() + 8 + 36 + 36 ) << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU64 ) 0 << ( MIU32 ) 0;
     streamDest << a_streamIn;
     mCMemoryStream streamOffsetTable;
     MIUInt uOffset = streamDest.Tell(), uOffset2, uOffset3, uOffset4;
@@ -1445,7 +1445,7 @@ mCString FormatTable( mTArray< mCStringArray > a_arrEntries, mCString a_strAlign
 
 MIBool ReadResourceFile( mCIOStreamBinary & streamIn, mCString const & a_strFilePath, MIBool & a_bIsResourceFile )
 {
-    if ( !( a_bIsResourceFile = ( streamIn.ReadString( 4 ) == "E1RF" ) ) )
+    if ( !( a_bIsResourceFile = ( streamIn.ReadString( 4 ) == "E2RF" ) ) )
         return streamIn.Seek( 0 ), MIFalse;
     streamIn.Seek( streamIn.ReadU32() + 4 );
     mCString const strResourceRevision = streamIn.ReadString( 4 );
@@ -1564,19 +1564,19 @@ int main( int argc, char* argv[] )
     mCRisenName::SetGame( mEGame_Elex2 );
     if ( argc < 2 )
     {
-        printf( "Elex Resource Manager v1.1 by Baltram\n"
-                "Start by dragging a file or folder onto elexresman.exe.\n\n"
+        printf( "Elex 2 Resource Manager v0.2.1 by Baltram\n"
+                "Start by dragging a file or folder onto elex2resman.exe.\n"
                 "Supported file types and actions:\n\n"
-                "  Elex PAK volume : (un)pack .pak     <--> [folder]\n"
-                "  Elex document   :  convert .hdr     <--> .hdrdoc\n"
-                "  Elex image      :  convert .eleximg <--> .dds\n"
-                "  Elex sound      :  convert .elexsnd <--> .mp3 or --> .wav\n"
-                "  Elex dialog     :  convert .elexdlg <--> .mp3 or --> .wav\n"
-                "  Elex template   :  convert .elextpl <--> .elextpldoc\n"
-                "  Elex world      :  convert .elexwrl <--> .elexwrldoc\n"
-                "  Elex sector     :  convert .elexsec <--> .elexsecdoc\n"
+                "  Elex PAK volume : (un)pack .pak      <--> [folder]\n"
+                "  Elex document   :  convert .hdr      <--> .hdrdoc\n"
+                "  Elex image      :  convert .elex2img <--> .dds\n"
+                "  Elex sound      :  convert .elex2snd <--> .mp3 or --> .wav\n"
+                "  Elex dialog     :  convert .elex2dlg <--> .mp3 or --> .wav\n"
+                "  Elex template   :  convert .elex2tpl <--> .elex2tpldoc\n"
+                "  Elex world      :  convert .elex2wrl <--> .elex2wrldoc\n"
+                "  Elex sector     :  convert .elex2sec <--> .elex2secdoc\n"
                 "  Sector modifi-\n"
-                "  cation file     :  process .elexsecmod\n\n" );
+                "  cation file     :  process .elex2secmod\n\n" );
         WaitForEnterKey( MITrue );
         return 1;
     }
@@ -1621,17 +1621,17 @@ int main( int argc, char* argv[] )
         return 1;
     }
     mCFileStream streamIn( strPath, mEFileOpenMode_Read );
-    if ( g_GetFileExt( strPath ).ToLower() == "elextpldoc" )
+    if ( g_GetFileExt( strPath ).ToLower() == "elex2tpldoc" )
         return TplDocToTpl( streamIn, strPath ) ? 0 : 1;
-    else if ( g_GetFileExt( strPath ).ToLower() == "elexsecdoc" )
+    else if ( g_GetFileExt( strPath ).ToLower() == "elexs2ecdoc" )
         return SecDocToSec( streamIn, strPath ) ? 0 : 1;
-    else if ( g_GetFileExt( strPath ).ToLower() == "elexsecmod" )
+    else if ( g_GetFileExt( strPath ).ToLower() == "elex2secmod" )
         return ProcessSecMod( streamIn, strPath ) ? 0 : 1;
     else if ( g_GetFileExt( strPath ).ToLower() == "hdr" )
         return HdrToHdrDoc( streamIn, strPath ) ? 0 : 1;
     else if ( g_GetFileExt( strPath ).ToLower() == "hdrdoc" )
         return HdrDocToHdr( streamIn, strPath ) ? 0 : 1;
-    else if ( g_GetFileExt( strPath ).ToLower() == "elexwrldoc" )
+    else if ( g_GetFileExt( strPath ).ToLower() == "elex2wrldoc" )
         return WrlDocToWrl( streamIn, strPath ) ? 0 : 1;
     MIBool bIsResourceFile = MIFalse, bIsDdsFile = MIFalse, bIsWavFile = MIFalse;
     MIBool bSuccess = ReadResourceFile( streamIn, strPath, bIsResourceFile );

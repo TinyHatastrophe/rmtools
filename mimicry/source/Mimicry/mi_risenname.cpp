@@ -48836,9 +48836,40 @@ mEGame mCRisenName::GetGame( void )
     return s_enuGame;
 }
 
+
 void mCRisenName::SetGame( mEGame a_enuGame )
 {
     s_enuGame = a_enuGame;
+}
+
+MILPCChar mCRisenName::GetGameResourceMagic( void )
+{
+    switch ( s_enuGame )
+    {
+    case mEGame_Risen3:
+        return "R3RF";
+    case mEGame_Elex:
+        return "E1RF";
+    case mEGame_Elex2:
+        return "E2RF";
+    default:
+        return "UNKN";
+    }
+}
+
+MILPCChar mCRisenName::GetGamePrefix( void )
+{
+    switch ( s_enuGame )
+    {
+    case mEGame_Risen3:
+        return "r3";
+    case mEGame_Elex:
+        return "elex";
+    case mEGame_Elex2:
+        return "elex2";
+    default:
+        return "";
+    }
 }
 
 void mCRisenName::InitializeGameStrings( void )
