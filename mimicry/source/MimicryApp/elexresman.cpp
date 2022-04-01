@@ -1565,7 +1565,7 @@ int main( int argc, char* argv[] )
     mCRisenName::SetGame( mEGame_Elex2 );
     if ( argc < 2 )
     {
-        printf( "Elex 2 Resource Manager v0.2.1 by Baltram\n"
+        printf( "Elex 2 Resource Manager v0.2.2 by Baltram\n"
                 "Start by dragging a file or folder onto elex2resman.exe.\n"
                 "Supported file types and actions:\n\n"
                 "  Elex PAK volume : (un)pack .pak      <--> [folder]\n"
@@ -1624,7 +1624,7 @@ int main( int argc, char* argv[] )
     mCFileStream streamIn( strPath, mEFileOpenMode_Read );
     if ( g_GetFileExt( strPath ).ToLower() == "elex2tpldoc" )
         return TplDocToTpl( streamIn, strPath ) ? 0 : 1;
-    else if ( g_GetFileExt( strPath ).ToLower() == "elexs2ecdoc" )
+    else if ( g_GetFileExt( strPath ).ToLower() == "elex2secdoc" )
         return SecDocToSec( streamIn, strPath ) ? 0 : 1;
     else if ( g_GetFileExt( strPath ).ToLower() == "elex2secmod" )
         return ProcessSecMod( streamIn, strPath ) ? 0 : 1;
