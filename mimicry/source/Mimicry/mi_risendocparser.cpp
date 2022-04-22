@@ -368,6 +368,20 @@ MIBool mCRisenDocParser::ParseRisen3Hdr( MIBool a_bSetLastErrorLine, MIBool a_bE
                 return mCDocParser::SetLastErrorLine( a_bSetLastErrorLine, MIFalse ), m_streamIn.Seek( uOffset ), m_streamOut.Seek( uOffsetOut ), MIFalse;
             m_streamOut << u32ClassHash;
         }
+
+        if (!MatchImmediate("ResourceRevision =", a_bSetLastErrorLine))
+            return m_streamIn.Seek(uOffset), m_streamOut.Seek(uOffsetOut), MIFalse;
+
+        /* read empty space between "ResourceRevision =" and revision string, theres probably better way to do it,
+         * but hey, as long as it works */
+        m_streamIn.ReadString(1);
+
+        mCString ResourceRevision = m_streamIn.ReadString(4);
+        m_streamOut << ResourceRevision;
+
+        if(!MatchImmediate(";", a_bSetLastErrorLine, MITrue, MIFalse, MIFalse))
+            return m_streamIn.Seek(uOffset), m_streamOut.Seek(uOffsetOut), MIFalse;
+
         MIUInt uOffsetEntries = m_streamOut.Tell(), uEntriesCount = 0;
         m_streamOut << ( MIU32 ) 0;
         for ( ; MatchImmediate( "\"", MIFalse, MITrue ); ++uEntriesCount )
